@@ -33,6 +33,7 @@ export interface IProps {
   disableLockScreen: boolean
   emptyColumnComponent: any
   endProcessFunction?: (pinCode: string) => void
+  onChangeFunction?: (pinCode: string) => void
   finishProcess?: (pinCode: string) => void
   getCurrentLength?: (length: number) => void
   handleResult: any
@@ -254,6 +255,7 @@ class PinCodeEnter extends React.PureComponent<IProps, IState> {
           colorPasswordError={this.props.colorPasswordError || undefined}
           customBackSpaceIcon={this.props.customBackSpaceIcon}
           emptyColumnComponent={this.props.emptyColumnComponent}
+          onChangeFunction={this.props.onChangeFunction}
           endProcess={this.endProcess}
           launchTouchID={this.launchTouchID}
           getCurrentLength={this.props.getCurrentLength}

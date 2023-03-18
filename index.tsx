@@ -23,6 +23,7 @@ export type IProps = {
   customBackSpaceIcon?: any
   disableLockScreen?: boolean
   endProcessFunction?: (pinCode: string) => void
+  onChangeFunction?: (pinCode: string) => void
   finishProcess?: (pinCode?: string) => void
   getCurrentPinLength?: (length: number) => void
   handleResultEnterPin?: any
@@ -272,6 +273,7 @@ class PINCode extends React.PureComponent<IProps, IState> {
             disableLockScreen={this.props.disableLockScreen || disableLockScreenDefault}
             emptyColumnComponent={this.props.bottomLeftComponent}
             endProcessFunction={this.props.endProcessFunction}
+            onChangeFunction={this.props.onChangeFunction}
             finishProcess={this.props.finishProcess}
             getCurrentLength={this.props.getCurrentPinLength}
             handleResult={this.props.handleResultEnterPin || null}

@@ -37,6 +37,7 @@ export interface IProps {
   customBackSpaceIcon?: Function
   emptyColumnComponent: any
   endProcess: (pinCode: string, isErrorValidation?: boolean) => void
+  onChangeFunction?: (pinCode: string) => void
   launchTouchID?: () => void 
   getCurrentLength?: (length: number) => void
   iconButtonDeleteDisabled?: boolean
@@ -161,6 +162,7 @@ class PinCode extends React.PureComponent<IProps, IState> {
 
   componentDidMount() {
     if (this.props.getCurrentLength) this.props.getCurrentLength(0);
+    if (this.props.onChangeFunction) this.props.onChangeFunction('');
   }
 
   componentDidUpdate(prevProps: Readonly<IProps>): void {
@@ -206,6 +208,8 @@ class PinCode extends React.PureComponent<IProps, IState> {
     this.setState({ password: currentPassword });
     if (this.props.getCurrentLength)
       this.props.getCurrentLength(currentPassword.length);
+    if (this.props.onChangeFunction)
+        this.props.onChangeFunction(currentPassword);
     if (currentPassword.length === this.props.passwordLength) {
       switch (this.props.status) {
         case PinStatus.choose:
@@ -344,6 +348,7 @@ class PinCode extends React.PureComponent<IProps, IState> {
     await delay(duration);
     this.setState({ moveData: { x: 0, y: 0 } });
     if (this.props.getCurrentLength) this.props.getCurrentLength(0);
+    if (this.props.onChangeFunction) this.props.onChangeFunction('');
   }
 
   async showError(isErrorValidation = false) {
@@ -501,6 +506,8 @@ class PinCode extends React.PureComponent<IProps, IState> {
             this.setState({ password: newPass });
             if (this.props.getCurrentLength)
               this.props.getCurrentLength(newPass.length);
+            if (this.props.onChangeFunction)
+              this.props.onChangeFunction(newPass);
           }
         }}
         accessible
@@ -773,6 +780,8 @@ class PinCode extends React.PureComponent<IProps, IState> {
                         this.setState({ password: newPass });
                         if (this.props.getCurrentLength)
                           this.props.getCurrentLength(newPass.length);
+                        if (this.props.onChangeFunction)
+                        this.props.onChangeFunction(newPass);
                       }
                     })
                     : this.renderButtonDelete(opacity)

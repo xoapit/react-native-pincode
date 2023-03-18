@@ -20,6 +20,7 @@ export interface IProps {
     disableLockScreen: boolean;
     emptyColumnComponent: any;
     endProcessFunction?: (pinCode: string) => void;
+    onChangeFunction?: (pinCode: string) => void;
     finishProcess?: (pinCode: string) => void;
     getCurrentLength?: (length: number) => void;
     handleResult: any;
@@ -96,6 +97,6 @@ declare class PinCodeEnter extends React.PureComponent<IProps, IState> {
     triggerTouchID(): void;
     endProcess: (pinCode?: string) => Promise<void>;
     launchTouchID(): Promise<void>;
-    render(): any;
+    render(): JSX.Element;
 }
 export default PinCodeEnter;
